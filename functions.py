@@ -1,37 +1,48 @@
 import random
 
+
+class Player():
+    def __init__(self, playernum, playerhand):
+      self.playernum = playernum
+      self.playerhand = playerhand
+
+    
+
 #previous code Kieran did
-def setup():
-  number_of_players = eval(input("how many people are going to play?"))
-  number_of_players = int(number_of_players)
+def setup(number_of_players, cards_in_hand):
+
+  #Ask for number of players and set hand length to correct length
+  
+  
   if number_of_players < 5:
     cards_in_hand =  7
   else:
     cards_in_hand = 5
-
-  suits = ['Spades','Clubs','Hearts','Diamond']
+  
+  #Create full deck
   values =['Ace','2','3','4','5','6','7','8','9','10','Jack','Queen','King']
   full_deck = []
-  for suit in suits:
+  for i in range(3):
     for value in values:
-      full_deck.append((value,suit))
+      full_deck.append((value))
 
-  shuffled_deck = random.shuffle(full_deck)
+  #Shuffle full deck 
+  random.shuffle(full_deck)
+  shuffled_deck = full_deck
   
-  player_hands = [[0 for i in range(number_of_players)] for j in range(cards_in_hand)]
+  #create player hands list
+  player_hands = [[0 for i in range(cards_in_hand)] for j in range(number_of_players)]
 
+  #fill each players hands with cards
   for i in range(number_of_players):
     for j in range(cards_in_hand):
-      player_hands.append[i-1[shuffled_deck.pop()]]  
-    print(player_hands[i-1])
-  
-  
-  
+      player_hands[i][j] = (shuffled_deck.pop(0))
+
   #ask for number of players, set up deck, shuffle and draw to players hands,
   return shuffled_deck,player_hands
 
-# def Draw_Card(shuffled_deck, player_hands):
-#   #Draw card from the top of shuffled deck and append to players hand
+
+
 
 def guess():
     #No input just return the player that is being checked and the card check
@@ -43,4 +54,3 @@ def Check_Hand(player_hands, guessed_card):
   #Checks for the guess inputs from the guess function
   guess_correct = False
   return guess_correct
-
