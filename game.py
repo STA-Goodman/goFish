@@ -15,7 +15,7 @@ for number in range(number_of_players):
     #create an instance of player classs with correct cards_in_hand
     players.append(functions.Player(playernum = number,playerhand = player_hands[number]))
 print(players[1].playerhand,players[0].playerhand)
-##function.guess()
+#function.guess()
 #function.Check_Hand()
 
 #Game loop

@@ -20,7 +20,7 @@ def setup(number_of_players, cards_in_hand):
     cards_in_hand = 5
   
   #Create full deck
-  values =['Ace','2','3','4','5','6','7','8','9','10','Jack','Queen','King']
+  values =['A','2','3','4','5','6','7','8','9','10','J','Q','K']
   full_deck = []
   for i in range(3):
     for value in values:
@@ -41,16 +41,17 @@ def setup(number_of_players, cards_in_hand):
   #ask for number of players, set up deck, shuffle and draw to players hands,
   return shuffled_deck,player_hands
 
-
-
-
-def guess():
-    #No input just return the player that is being checked and the card check
-    player_guessed = input("Which player do you want to ask? : ")
-    guessed_card = input("What card do you want to guess? : ")
-    return player_guessed,guessed_card
   
-def Check_Hand(player_hands, guessed_card):
+def guess(players,player_guessed, guessed_card, current_player,shuffled_deck):
   #Checks for the guess inputs from the guess function
-  guess_correct = False
-  return guess_correct
+  player_guessed = eval(input("Which player do you want to ask? : "))
+  guessed_card = input("What card do you want to guess? [1,2,K,Q]: ")
+    
+  if players[player_guessed-1].playerhand.__contains__(guessed_card):
+    print("Correct guess")
+    players[player_guessed-1].playerhand.remove(guessed_card)
+    players[current_player].playerhand.append(guessed_card)
+  else:
+    print("Go Fish!")
+    players[current_player].playerhand.append(shuffled_deck.pop(0))
+    
