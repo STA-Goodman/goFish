@@ -20,16 +20,22 @@ print(players[1].playerhand,players[0].playerhand)
 
 #Game loop
 while gameOver == False:
-    currentPlayer = 0
+    if len(players[currentPlayer].playerhand) == 0:
+        currentPlayer = 0
     print("Game is starting")
-    cont = eval(input("Player ,"+ currentPlayer + "'s turn. Press 1 to continiue"))
+    cont = eval(input("Player ,"+ str(currentPlayer + 1) + "'s turn. Press 1 to continiue"))
     if cont == 1:
         break
     else:
         print("Invalid input")
     
     print(players[currentPlayer].playerhand) 
-    functions.guess(players,)
+    functions.guess(players,currentPlayer,shuffled_deck)
+
+    if len(shuffled_deck) == 0 and len(players[currentPlayer].playerhand) == 0:
+        gameOver = True
+        print("Game Over")
+        break
 
 #while True:
     #break

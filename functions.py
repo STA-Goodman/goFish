@@ -42,7 +42,7 @@ def setup(number_of_players, cards_in_hand):
   return shuffled_deck,player_hands
 
   
-def guess(players,player_guessed, guessed_card, current_player,shuffled_deck):
+def guess(players,current_player,shuffled_deck):
   #Checks for the guess inputs from the guess function
   player_guessed = eval(input("Which player do you want to ask? : "))
   guessed_card = input("What card do you want to guess? [1,2,K,Q]: ")
