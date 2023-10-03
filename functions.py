@@ -1,12 +1,12 @@
 import random
+from collections import Counter
 
 
 class Player():
     def __init__(self, playernum, playerhand):
       self.playernum = playernum
       self.playerhand = playerhand
-
-    
+      self.pairs = pairs
 
 #previous code Kieran did
 def setup(number_of_players, cards_in_hand):
@@ -55,3 +55,10 @@ def guess(players,current_player,shuffled_deck):
     print("Go Fish!")
     players[current_player].playerhand.append(shuffled_deck.pop(0))
     
+def checkHands(players,currentPlayer):
+  counter = Counter(players[currentPlayer].playerhand)
+  result = [i for i, j in counter.items() if j > 1]
+  for i in result:
+    players[currentPlayer].playerhand.remove(result[i])
+    players[currentPlayer].playerhand.remove(result[i])
+    players[currentPlayer].pairs += 1
