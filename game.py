@@ -32,11 +32,16 @@ while gameOver == False:
     print("Game is starting")
     #clear screen after player turn
     os.system('cls')
+    print(players[2].playerhand)
     while correct == True:
-        if players[currentPlayer].playerhand == []:
+        if players[currentPlayer].playerhand == [] and shuffled_deck == []:
             break
+        elif players[currentPlayer].playerhand == []:
+            for i in range(cards_in_hand):
+                if shuffled_deck != []:
+                    players[currentPlayer].playerhand.append(shuffled_deck.pop(0))
         
-        cont = eval(input("Player ,"+ str(currentPlayer + 1) + "'s turn. Press 1 to continiue"))
+        cont = eval(input("Player ,"+ str(currentPlayer + 1) + "'s turn. Press 1 to continue"))
         
         #print current players hand
         print(players[currentPlayer].playerhand) 
@@ -55,7 +60,7 @@ while gameOver == False:
     
     if len(shuffled_deck) == 0:
         a = 0
-        for i in players[currentPlayer]:
+        for i in players:
             if len(i.playerhand) == 0:
                 a += 1
         if a == number_of_players:
