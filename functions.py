@@ -3,7 +3,7 @@ from collections import Counter
 
 
 class Player():
-    def __init__(self, playernum, playerhand):
+    def __init__(self, playernum, playerhand, pairs = 0):
       self.playernum = playernum
       self.playerhand = playerhand
       self.pairs = pairs
@@ -45,20 +45,25 @@ def setup(number_of_players, cards_in_hand):
 def guess(players,current_player,shuffled_deck):
   #Checks for the guess inputs from the guess function
   player_guessed = eval(input("Which player do you want to ask? : "))
+  while player_guessed == current_player + 1:
+    player_guessed = eval(input("You silly goose! You cant guess yourself. Which player do you want to ask? : "))
   guessed_card = input("What card do you want to guess? [1,2,K,Q]: ")
     
   if players[player_guessed-1].playerhand.__contains__(guessed_card):
     print("Correct guess")
     players[player_guessed-1].playerhand.remove(guessed_card)
     players[current_player].playerhand.append(guessed_card)
+    return(True)
   else:
     print("Go Fish!")
+    print("You drew a",shuffled_deck[0])
     players[current_player].playerhand.append(shuffled_deck.pop(0))
+    return(False)
     
 def checkHands(players,currentPlayer):
   counter = Counter(players[currentPlayer].playerhand)
   result = [i for i, j in counter.items() if j > 1]
   for i in result:
-    players[currentPlayer].playerhand.remove(result[i])
-    players[currentPlayer].playerhand.remove(result[i])
+    players[currentPlayer].playerhand.remove(i)
+    players[currentPlayer].playerhand.remove(i)
     players[currentPlayer].pairs += 1

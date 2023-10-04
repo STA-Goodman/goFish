@@ -23,6 +23,7 @@ for number in range(number_of_players):
 currentPlayer = 0
 while gameOver == False:
     #skip player if they have no cards
+    correct = True
     if len(players[currentPlayer].playerhand) == 0:
         currentPlayer + 1
 
@@ -31,24 +32,26 @@ while gameOver == False:
     print("Game is starting")
     #clear screen after player turn
     os.system('cls')
-    cont = eval(input("Player ,"+ str(currentPlayer + 1) + "'s turn. Press 1 to continiue"))
+    while correct == True:
+        cont = eval(input("Player"+ str(currentPlayer + 1) + "'s turn. Press 1 to continiue"))
+        
+        #print current players hand
+        print(players[currentPlayer].playerhand) 
+        correct = functions.guess(players,currentPlayer,shuffled_deck) 
+
+        if len(shuffled_deck) == 0 and len(players[currentPlayer].playerhand) == 0:
+            gameOver = True
+            print("Game Over")
+            break
+        functions.checkHands(players,currentPlayer)
+        print(players[currentPlayer].playerhand)
+        print("You have",players[currentPlayer].pairs,"pairs")
+    cont = eval(input("Your turn is over. Press 1 to continiue"))
     
-    #print current players hand
-    print(players[currentPlayer].playerhand) 
-    functions.guess(players,currentPlayer,shuffled_deck)
-    print(players[currentPlayer].playerhand) 
-
-    if len(shuffled_deck) == 0 and len(players[currentPlayer].playerhand) == 0:
-        gameOver = True
-        print("Game Over")
-        break
-
     if currentPlayer < number_of_players - 1:
         currentPlayer += 1
     else:
         currentPlayer = 0
-    
-    cont = eval(input("Your turn is over. Press 1 to continiue"))
 
 #while True:
     #break
