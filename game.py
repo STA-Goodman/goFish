@@ -46,12 +46,18 @@ while gameOver == False:
         print("\n")
         print("Your Hand".center(100))
         print(str(players[currentPlayer].playerhand).center(100)) 
-        functions.Card.printCard(players[currentPlayer].playerhand)
+        cards = []
+        cards = functions.Card.printCard(players[currentPlayer].playerhand)
+        for i in cards:
+            print(i)
         print("\n")
         correct = functions.guess(players,currentPlayer,shuffled_deck)
         
         functions.checkHands(players,currentPlayer)
-        print(str(players[currentPlayer].playerhand).center(100)) 
+        cards = []
+        cards = functions.Card.printCard(players[currentPlayer].playerhand)
+        for i in cards:
+            print(i)
         print("You have {} pairs".format(players[currentPlayer].pairs).center(100))
     print("\n")
     input("Your turn is over. Press any key to continue: ")

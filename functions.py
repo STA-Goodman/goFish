@@ -10,18 +10,29 @@ class Card():
       lines = [[] for i in range(9)]
       space  = ' '
 
-      for index, card in enumerate(len(cards)):
+      for index, card in enumerate(cards):
 
         # add the individual card on a line by line basis
-        lines[0].append('┌─────────┐')
-        lines[1].append('│{}{}       │'.format(card, space))  # use two {} one for char, one for space or char
-        lines[2].append('│         │')
-        lines[3].append('│         │')
-        lines[4].append('│    {}    │'.format(suit[random.randint(1,4)]))
-        lines[5].append('│         │')
-        lines[6].append('│         │')
-        lines[7].append('│       {}{}│'.format(space, card))
-        lines[8].append('└─────────┘')
+        if card == '10':
+          lines[0].append('┌─────────┐')
+          lines[1].append('│{}       │'.format(card))  # use two {} one for char, one for space or char
+          lines[2].append('│         │')
+          lines[3].append('│         │')
+          lines[4].append('│    {}    │'.format(suit[random.randint(0,3)]))
+          lines[5].append('│         │')
+          lines[6].append('│         │')
+          lines[7].append('│       {}│'.format(card))
+          lines[8].append('└─────────┘')
+        else:
+          lines[0].append('┌─────────┐')
+          lines[1].append('│{}{}       │'.format(card,space))  # use two {} one for char, one for space or char
+          lines[2].append('│         │')
+          lines[3].append('│         │')
+          lines[4].append('│    {}    │'.format(suit[random.randint(0,3)]))
+          lines[5].append('│         │')
+          lines[6].append('│         │')
+          lines[7].append('│       {}{}│'.format(space,card))
+          lines[8].append('└─────────┘')
 
       result = []
       for index, line in enumerate(lines):
