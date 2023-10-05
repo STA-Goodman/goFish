@@ -46,6 +46,7 @@ while gameOver == False:
         print("\n")
         print("Your Hand".center(100))
         print(str(players[currentPlayer].playerhand).center(100)) 
+        functions.Card.printCard(players[currentPlayer].playerhand)
         print("\n")
         correct = functions.guess(players,currentPlayer,shuffled_deck)
         
