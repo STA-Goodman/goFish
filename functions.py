@@ -44,19 +44,24 @@ def setup(number_of_players, cards_in_hand):
   
 def guess(players,current_player,shuffled_deck):
   #Checks for the guess inputs from the guess function
+  valid_cards = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
   player_guessed = eval(input("Which player do you want to ask? : "))
-  while player_guessed == current_player + 1:
-    player_guessed = eval(input("You silly goose! You cant guess yourself. Which player do you want to ask? : "))
-  guessed_card = input("What card do you want to guess? [1,2,K,Q]: ")
+  while player_guessed == current_player + 1 or player_guessed > len(players) or player_guessed < 1:
+    player_guessed = eval(input("You silly goose! You cant guess that. Which player do you want to ask? : "))
+  guessed_card = input("What card do you want to guess? [1,2,K,Q]: ").upper()
+  while guessed_card not in valid_cards:
+    guessed_card = input("What card do you want to guess? [1,2,K,Q]: ").upper()
     
   if players[player_guessed-1].playerhand.__contains__(guessed_card):
-    print("Correct guess")
+    print("\n")
+    print("Correct guess".center(100))
     players[player_guessed-1].playerhand.remove(guessed_card)
     players[current_player].playerhand.append(guessed_card)
     return(True)
   else:
-    print("Go Fish!")
-    print("You drew a",shuffled_deck[0])
+    print("\n")
+    print("Go Fish!".center(100))
+    print("You drew a {}".format(shuffled_deck[0]).center(100))
     players[current_player].playerhand.append(shuffled_deck.pop(0))
     return(False)
     
