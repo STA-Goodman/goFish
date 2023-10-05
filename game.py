@@ -32,7 +32,6 @@ while gameOver == False:
     print("Game is starting")
     #clear screen after player turn
     os.system('cls')
-    print(players[2].playerhand)
     while correct == True:
         if players[currentPlayer].playerhand == [] and shuffled_deck == []:
             break
@@ -41,17 +40,20 @@ while gameOver == False:
                 if shuffled_deck != []:
                     players[currentPlayer].playerhand.append(shuffled_deck.pop(0))
         
-        cont = eval(input("Player ,"+ str(currentPlayer + 1) + "'s turn. Press 1 to continue"))
+        input("\nPlayer "+str(currentPlayer + 1)+"'s turn. Enter any key to continue: ")
         
         #print current players hand
-        print(players[currentPlayer].playerhand) 
+        print("\n")
+        print("Your Hand".center(100))
+        print(str(players[currentPlayer].playerhand).center(100)) 
+        print("\n")
         correct = functions.guess(players,currentPlayer,shuffled_deck)
         
         functions.checkHands(players,currentPlayer)
-        print(players[currentPlayer].playerhand)
-        print("You have",players[currentPlayer].pairs,"pairs")
-    cont = eval(input("Your turn is over. Press 1 to continiue"))
-    
+        print(str(players[currentPlayer].playerhand).center(100)) 
+        print("You have {} pairs".format(players[currentPlayer].pairs).center(100))
+    print("\n")
+    input("Your turn is over. Press any key to continue: ")
     if currentPlayer < number_of_players - 1:
         currentPlayer += 1
     else:
