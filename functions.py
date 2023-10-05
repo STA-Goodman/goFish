@@ -109,3 +109,10 @@ def checkHands(players,currentPlayer):
     players[currentPlayer].playerhand.remove(i)
     players[currentPlayer].playerhand.remove(i)
     players[currentPlayer].pairs += 1
+
+def printScoreboard(players):
+  print("\n")
+  print("Scoreboard".center(100))
+  for i in range(len(players)):
+    print("Player {} has {} pairs".format(i+1,players[i].pairs).center(100))
+  print("\n")

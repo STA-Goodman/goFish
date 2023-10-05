@@ -60,7 +60,8 @@ while gameOver == False:
             print(i)
         print("You have {} pairs".format(players[currentPlayer].pairs).center(100))
     print("\n")
-    input("Your turn is over. Press any key to continue: ")
+    if input("Your turn is over. Press any key to continue: ") == 'f':
+        gameOver = True
     if currentPlayer < number_of_players - 1:
         currentPlayer += 1
     else:
@@ -77,5 +78,4 @@ while gameOver == False:
             break
             
 
-#while True:
-    #break
+functions.printScoreboard(players)
